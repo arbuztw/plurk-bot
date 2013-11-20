@@ -35,5 +35,7 @@ class PlurkAPI:
 		self.data['oauth_signature'] = self.getSignature(self.baseURL + api)
 
 		f = urlopen(self.baseURL + api, urlencode(self.data))
+		r = f.read()
+		f.close()
 
-		return json.loads(f.read())
+		return json.loads(r)
