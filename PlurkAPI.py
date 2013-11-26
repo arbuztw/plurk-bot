@@ -20,21 +20,22 @@ class PlurkAPI:
 	def getNonce(self):
 		r = random.Random()
 		return r.randint(10000000, 99999999)
-	def getSignature(self, url):
-		qstr = urlencode(sorted(self.data.items()))
+	def getSignature(self, url, mydata):
+		qstr = urlencode(sorted(mydata.items()))
 		plain = "POST&" + quote_plus(url) + "&" + quote_plus(qstr)
 		key = self.CONSUMER_SECRET + "&" + self.TOKEN_SECRET
 		hashed = hmac.new(key, plain, sha1)
 		return binascii.b2a_base64(hashed.digest())[:-1]
 		
 	def call(self, api, args={}):
-		self.data['oauth_timestamp'] = int(time())
-		self.data['oauth_nonce'] = self.getNonce()
+		mydata = self.data.copy()
+		mydata['oauth_timestamp'] = int(time())
+		mydata['oauth_nonce'] = self.getNonce()
 		for key in args:
-			self.data[key] = args[key]
-		self.data['oauth_signature'] = self.getSignature(self.baseURL + api)
+			mydata[key] = args[key]
+		mydata['oauth_signature'] = self.getSignature(self.baseURL + api, mydata)
 
-		f = urlopen(self.baseURL + api, urlencode(self.data))
+		f = urlopen(self.baseURL + api, urlencode(mydata))
 		r = f.read()
 		f.close()
 
