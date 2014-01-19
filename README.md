@@ -27,6 +27,8 @@ Add your own responses mapping into **resp.json** in following format.
 The first string is the keyword you want to match, which used regular expression. 
 The following is a list holding the responses correspond to the keyword. 
 If matched, the program will randomly pick up one response in the list.
+### Execution
+```python PlurkBot.py```
 
 
 References
