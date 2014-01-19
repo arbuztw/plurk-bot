@@ -13,9 +13,9 @@ Python 2.7.x
 Usage
 -
 ### Plurk OAuth keys
-Add your OAuth keys(CONSUMER_KEY, CONSUMER_SECRET, TOKEN_KEY, TOKEN_SECRET) into PlurkAPI.py.
+Add your OAuth keys(CONSUMER_KEY, CONSUMER_SECRET, TOKEN_KEY, TOKEN_SECRET) into **PlurkAPI.py**.
 ### Responses
-Add your own responses mapping into resp.json in following format.
+Add your own responses mapping into **resp.json** in following format.
 ```
 [
       "keyword1", ["resp1-1", "resp1-2", ... , "resp1-n"],
@@ -25,7 +25,7 @@ Add your own responses mapping into resp.json in following format.
 ]
 ```
 The first string is the keyword you want to match, which used regular expression. 
-The following is a list holding the responses corredsponded to the keyword. 
+The following is a list holding the responses correspond to the keyword. 
 If matched, the program will randomly pick up one response in the list.
 
 
